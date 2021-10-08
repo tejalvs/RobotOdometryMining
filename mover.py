@@ -38,9 +38,17 @@ class mover():
 		self.startt = None
 		self.mspub = rospy.Publisher('/cmd_motor_state', MotorState, queue_size = 1,latch=True)
 		self.mspub.publish(1)
+		self.initial_position=None
+		self.counter=0
+		self.initial_range=None
 	
 
 	def odom_callback(self, odom):
+	    if counter==0:
+	        self.initial_position=odom_to_pose(odom)
+	        self.counter+=1
+	        ogdata="x="+str(self.initial_position.x)+" y="+str(self.initial_position.y)+" theta="+str(self.initial_position.theta)
+            rospy.loginfo("Pose information(x,y, theta) %s",ogdata)
 		self.pose = odom_to_pose(odom)
 		logdata="x="+str(self.pose.x)+" y="+str(self.pose.y)+" theta="+str(self.pose.theta)+" velocity="+str(self.vel)+" omega="+str(self.omega)
 		rospy.loginfo("Pose information(x,y, theta, v, omega) %s",logdata)
@@ -134,10 +142,10 @@ def main():
      mv = mover(t,v,w)
      rospy.Subscriber("/pose", Odometry, mv.odom_callback)
      rospy.Subscriber("/scan", LaserScan, mv.scan_callback)
-     #rospy.Subscriber("/camera/rgb/image_color", Image, mv.image_callback)
-     #rospy.Timer(rospy.Duration(0.1), mv.timer_callback)
+#      rospy.Subscriber("/camera/rgb/image_color", Image, mv.image_callback)
+#      rospy.Timer(rospy.Duration(0.1), mv.timer_callback)
      rospy.spin()
-     
+
 main()
 
 
