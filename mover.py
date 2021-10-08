@@ -41,17 +41,17 @@ class mover():
 		self.initial_position=None
 		self.counter=0
 		self.initial_range=None
-	
 
 	def odom_callback(self, odom):
-	    if counter==0:
-	        self.initial_position=odom_to_pose(odom)
-	        self.counter+=1
-	        ogdata="x="+str(self.initial_position.x)+" y="+str(self.initial_position.y)+" theta="+str(self.initial_position.theta)
-            rospy.loginfo("Pose information(x,y, theta) %s",ogdata)
-		self.pose = odom_to_pose(odom)
-		logdata="x="+str(self.pose.x)+" y="+str(self.pose.y)+" theta="+str(self.pose.theta)+" velocity="+str(self.vel)+" omega="+str(self.omega)
-		rospy.loginfo("Pose information(x,y, theta, v, omega) %s",logdata)
+       	 if self.counter==0:
+       		 self.initial_position = odom_to_pose(odom)
+       		 self.counter+=1
+       		 ogdata="x="+str(self.initial_position.x)+" y="+str(self.initial_position.y)+" theta="+str(self.initial_position.theta)
+       		 rospy.loginfo("initial Pose information(x,y, theta, v, omega) %s",ogdata)
+       	 self.pose = odom_to_pose(odom)
+       	 logdata="x="+str(self.pose.x)+" y="+str(self.pose.y)+" theta="+str(self.pose.theta)+"velocity="+str(self.vel)+" omega="+str(self.omega)
+       	 rospy.loginfo("Pose information(x,y, theta, v, omega) %s",logdata)
+
 
 	def scan_callback(self, scan):
 		range_data=scan.ranges
@@ -126,11 +126,6 @@ class mover():
 		self.start_position=Point()
 		self.start_position=data_odom.pose.pose.position.x
 		self.start_position=data_odom.pose.pose.position.y
-		print()
-		
-			
-
-
 
 def main():
      rospy.init_node("mover")
