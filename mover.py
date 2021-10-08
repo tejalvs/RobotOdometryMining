@@ -52,7 +52,6 @@ class mover():
 		self.pose = odom_to_pose(odom)
 		logdata="x="+str(self.pose.x)+" y="+str(self.pose.y)+" theta="+str(self.pose.theta)+" velocity="+str(self.vel)+" omega="+str(self.omega)
 		rospy.loginfo("Pose information(x,y, theta, v, omega) %s",logdata)
-		#rospy.loginfo(self.pose.x, self.pose.y,self.pose.theta)
 
 	def scan_callback(self, scan):
 		range_data=scan.ranges
