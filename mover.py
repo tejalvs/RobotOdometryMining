@@ -119,6 +119,7 @@ class mover():
 		self.start_position=Point()
 		self.start_position=data_odom.pose.pose.position.x
 		self.start_position=data_odom.pose.pose.position.y
+		print()
 		
 			
 
