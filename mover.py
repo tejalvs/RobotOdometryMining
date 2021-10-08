@@ -52,39 +52,36 @@ class mover():
        	 logdata="x="+str(self.pose.x)+" y="+str(self.pose.y)+" theta="+str(self.pose.theta)+"velocity="+str(self.vel)+" omega="+str(self.omega)
        	 rospy.loginfo("Pose information(x,y, theta, v, omega) %s",logdata)
 
+    def get_range_coordinates(self,range_data,angle_min,angle_max):
+        x=[]
+        y=[]
+        for i in range(len(range_data)):
+        			if isnan(range_data[i]):
+        				#rospy.loginfo("True")
+        				continue
+        			else:
+        				alpha=angle_min+(i*angle_increment)
+        				x_new=(self.initial_position.x+cos(self.initial_position.theta+alpha))*100
+        				y_new=(self.initial_position.y+sin(self.initial_position.theta+alpha))*100
+        				x.append(x_new)
+        				y.append(y_new)
+        x.append(self.initial_position.x)
+        y.append(self.initial_position.y)
+        return x,y
 
 	def scan_callback(self, scan):
-		range_data=scan.ranges
-		angle_min=scan.angle_min
-		angle_max=scan.angle_max
-		angle_increment=scan.angle_increment
-		x=[]
-		y=[]
-		x_init=0
-		y_init=0
-		theta=0
-		for i in range(len(range_data)):
-			if isnan(range_data[i]):
-				#rospy.loginfo("True")
-				continue
-			else:
-				alpha=angle_min+(i*angle_increment)
-				x_new=(x_init+cos(theta+alpha))*100
-				y_new=(y_init+sin(theta+alpha))*100
-				x.append(x_new)
-				y.append(y_new)
-		x.append(0)
-		y.append(0)
-		plt.xlim(-100, 110)
-		plt.ylim(-100, 110)
-		plt.scatter(x,y)
-		plt.show()
+	    range_data=scan.ranges
+        angle_min=scan.angle_min
+        angle_max=scan.angle_max
+        angle_increment=scan.angle_increment
+        x,y=self.get_range_coordinates(range_data,angle_min,angle_max)
+	    if self.counter==1:
+            plt.xlim(-100, 110)
+            plt.ylim(-100, 110)
+		    plt.scatter(x,y)
+		    plt.show()
 		sys.exit()
-		
 
-          
-          
-          
 	def image_callback(self, msg):
 		bridge=CvBridge()
 		rospy.loginfo("image information %s")
