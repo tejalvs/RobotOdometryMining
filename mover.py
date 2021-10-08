@@ -39,13 +39,19 @@ class mover():
 		self.mspub = rospy.Publisher('/cmd_motor_state', MotorState, queue_size = 1,latch=True)
 		self.mspub.publish(1)
 		self.initial_position=None
+		self.counter=0
+		self.initial_range=None
 	
 
 	def odom_callback(self, odom):
+	    if counter==0:
+	        self.initial_position=odom_to_pose(odom)
+	        self.counter+=1
+	        ogdata="x="+str(self.initial_position.x)+" y="+str(self.initial_position.y)+" theta="+str(self.initial_position.theta)
+            rospy.loginfo("Pose information(x,y, theta) %s",ogdata)
 		self.pose = odom_to_pose(odom)
 		logdata="x="+str(self.pose.x)+" y="+str(self.pose.y)+" theta="+str(self.pose.theta)+" velocity="+str(self.vel)+" omega="+str(self.omega)
 		rospy.loginfo("Pose information(x,y, theta, v, omega) %s",logdata)
-		#rospy.loginfo(self.pose.x, self.pose.y,self.pose.theta)
 
 	def scan_callback(self, scan):
 		range_data=scan.ranges
@@ -114,19 +120,13 @@ class mover():
 		data_odom=None
 		while data_odom is None:
 			try :
-				data_odom=rospy.wait_for_messages("/pose",Odometry, timeout=1)
-				data_range=rospy.wait_for_messages("/scan",LaserScan, timeout=1)
+				data_odom=rospy.wait_for_messages("/odom",Odometry, timeout=1)
 			except:
 				rospy.loginfo("Current odom not ready yet, retrying  for setting up init position")
-		self.initial_position=Pose()
-		self.initial_position.x=data_odom.pose.pose.position.x
-		self.initial_position.y=data_odom.pose.pose.position.y
-		qz = odom.pose.pose.orientation.z
-        qw = odom.pose.pose.orientation.w
-        self.initial_position.theta = atan2(2 * qw * qz, 1 - 2 * qz * qz)
-
-
-
+		self.start_position=Point()
+		self.start_position=data_odom.pose.pose.position.x
+		self.start_position=data_odom.pose.pose.position.y
+		print()
 		
 			
 
@@ -139,16 +139,12 @@ def main():
      v = float(sys.argv[2])
      w = float(sys.argv[3])
      mv = mover(t,v,w)
-     mv.get_init_position()
-     print("x=",mv.initial_position.x)
-     print("y=",mv.initial_position.y)
-     rospy.loginfo("theta=",mv.initial_position.theta)
-#      rospy.Subscriber("/pose", Odometry, mv.odom_callback)
-#      rospy.Subscriber("/scan", LaserScan, mv.scan_callback)
-     #rospy.Subscriber("/camera/rgb/image_color", Image, mv.image_callback)
-     #rospy.Timer(rospy.Duration(0.1), mv.timer_callback)
-#      rospy.spin()
-     
+     rospy.Subscriber("/pose", Odometry, mv.odom_callback)
+     rospy.Subscriber("/scan", LaserScan, mv.scan_callback)
+#      rospy.Subscriber("/camera/rgb/image_color", Image, mv.image_callback)
+#      rospy.Timer(rospy.Duration(0.1), mv.timer_callback)
+     rospy.spin()
+
 main()
 
 
