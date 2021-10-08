@@ -1,0 +1,8 @@
+Commands
+more corobot_ws/src/corobot_controller/src/mover.py
+roslaunch corobot_bringup robot_base.launch 
+
+rosrun corobot_controller mover.py 5 -0.2 0
+
+log files
+~/.ros/log$
