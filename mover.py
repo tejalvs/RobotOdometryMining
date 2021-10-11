@@ -51,7 +51,7 @@ class mover():
 			rospy.loginfo("initial Pose information(x,y, theta, v, omega) %s",ogdata)
 		self.pose = odom_to_pose(odom)
 		logdata="x="+str(self.pose.x)+" y="+str(self.pose.y)+" theta="+str(self.pose.theta)+"velocity="+str(self.vel)+" omega="+str(self.omega)
-		#rospy.loginfo("Pose information(x,y, theta, v, omega) %s",logdata)
+		rospy.loginfo("Pose information(x,y, theta, v, omega) %s",logdata)
 
 
 	def get_range_coordinates(self,range_data,angle_min,angle_max,angle_increment):
@@ -63,12 +63,10 @@ class mover():
 		max_value=float("-inf")
 		log_data=None
 		for i in range(len(range_data)):
-			rospy.loginfo(str(x_max)+str(y_max)+str(angle_max))
 			if isnan(range_data[i]):
 				#rospy.loginfo("True")
 				continue
 			else:
-
 				alpha=angle_min+(i*angle_increment)
 				x_new=(self.initial_position.x+cos(self.initial_position.theta+alpha))*100
 				y_new=(self.initial_position.y+sin(self.initial_position.theta+alpha))*100
@@ -94,7 +92,8 @@ class mover():
 			 x,y=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment)
 			 plt.xlim((int(min(x)-10)), (int(max(x)+10)))
 			 plt.ylim((int(min(y)-10)), (int(max(y)+10)))
-			 plt.scatter(x,y)
+			 plt.scatter(x,y,linestyle='--', marker='o', color='b')
+			 plt.savefig('/home/driver/catkin_ws/src/mover/initial_position.png')
 			 plt.show()
 			 self.counter+=1
 
