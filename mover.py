@@ -72,6 +72,10 @@ class mover():
 	    			min_val=value
 		return min_val
 
+    def get_distance(self,p1x,p1y,p2x,p2y):
+        result= (((p2x-p1x )**2) + ((p2y-p1y)**2) )**0.5)
+        return result
+
 	def scan_callback(self, scan):
 		range_data=scan.ranges
 		angle_min=scan.angle_min
@@ -80,8 +84,8 @@ class mover():
 		if self.counter==1:
 			self.initial_range_points=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
 			center=self.initial_range_points[self.find_point(self.initial_range_points.keys(),angle_increment)]
-			d=dist([self.initial_position.x,self.initial_position.y],self.initial_range_points[center])
-			rospy.loginfo(ds)
+            d=self.get_distance(self.initial_position.x,self.initial_position.y,center[0],center[1])
+            rospy.loginfo(ds)
 # 			 line_x=np.array([self.initial_position.x,x[len(x)//2]])
 # 			 line_y=np.array([self.initial_position.y,y[len(y)//2]])
 # 			 plt.xlim((int(min(x)-10)), (int(max(x)+10)))
@@ -93,9 +97,15 @@ class mover():
 # 			 plt.plot(line_x,line_y)
 # 			 plt.savefig('/home/driver/catkin_ws/src/mover/src/initial_position.png')
 # 			 plt.show()
+           rospy.loginfo(center)
+           rospy.loginfo("middle")
 			self.counter+=1
 		else:
 			range_points=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
+			center=range_points[self.find_point(range_points.keys(),angle_increment)]
+			rospy.loginfo(center)
+
+
 
 
 
