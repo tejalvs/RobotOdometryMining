@@ -63,21 +63,24 @@ class mover():
 				x=(self.initial_position.x+cos(self.initial_position.theta+alpha))*range_data[i]
 				y=(self.initial_position.y+sin(self.initial_position.theta+alpha))*range_data[i]
 				range_points[alpha]=[x,y]
-	    return range_points
+		return range_points
 
-    def find_point(self,key_store):
-        for value in key_store:
-            if value in range(-0.0174533,0.0174533)
-                return value
+	def find_point(self,key_store,angle_increment):
+		min_val=float('inf')
+		for value in key_store:
+	    		if abs(value)< abs(min_val) :
+	    			min_val=value
+		return min_val
+
 	def scan_callback(self, scan):
 		range_data=scan.ranges
 		angle_min=scan.angle_min
 		angle_max=scan.angle_max
 		angle_increment=scan.angle_increment
 		if self.counter==1:
-			 self.initial_range_points=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
-			 center=self.initial_range_points[self.find_point(self.initial_range_points.keys()]
-             rospy.loginfo(center)
+			self.initial_range_points=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
+			center=self.initial_range_points[self.find_point(self.initial_range_points.keys(),angle_increment)]
+			rospy.loginfo(center)
 # 			 line_x=np.array([self.initial_position.x,x[len(x)//2]])
 # 			 line_y=np.array([self.initial_position.y,y[len(y)//2]])
 # 			 plt.xlim((int(min(x)-10)), (int(max(x)+10)))
@@ -89,9 +92,9 @@ class mover():
 # 			 plt.plot(line_x,line_y)
 # 			 plt.savefig('/home/driver/catkin_ws/src/mover/src/initial_position.png')
 # 			 plt.show()
-			 self.counter+=1
+			self.counter+=1
 		else:
-		    range_points=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
+			range_points=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
 
 
 
@@ -123,4 +126,3 @@ def main():
 	rospy.spin()
 
 main()
-
