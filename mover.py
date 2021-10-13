@@ -6,10 +6,10 @@ from p2os_msgs.msg import MotorState
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
 from math import atan2,isnan,sin,cos
-from cv_bridge import CvBridge,CvBridgeError
-import cv2
 import numpy as np
 import matplotlib.pyplot as plt
+from collections import OrderedDict
+
 class Pose():
 	def __init__(self):
 	    	self.header = None
@@ -54,16 +54,16 @@ class mover():
 		rospy.loginfo("Pose information(x,y, theta, v, omega) %s",logdata)
 
 	def get_range_coordinates(self,range_data,angle_min,angle_max,angle_increment,delta):
-		x={}
-		y={}
+		range_points={}
 		for i in range(len(range_data)):
 			if isnan(range_data[i]):
 				continue
 			else:
 				alpha=angle_min+(i*angle_increment)
-				x[alpha]=(self.initial_position.x+cos(self.initial_position.theta+alpha))*range_data[i]
-				y[alpha]=(self.initial_position.y+sin(self.initial_position.theta+alpha))*range_data[i]
-		return x,y
+				x=(self.initial_position.x+cos(self.initial_position.theta+alpha))*range_data[i]
+				y=(self.initial_position.y+sin(self.initial_position.theta+alpha))*range_data[i]
+				range_points[alpha]=[x,y]
+	    return range_points
 
 
 	def scan_callback(self, scan):
@@ -72,9 +72,8 @@ class mover():
 		angle_max=scan.angle_max
 		angle_increment=scan.angle_increment
 		if self.counter==1:
-			 x,y=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
-			 rospy.loginfo(x)
-			 rospy.loginfo(y)
+			 range_points=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
+			 rospy.loginfo(range_points)
 # 			 line_x=np.array([self.initial_position.x,x[len(x)//2]])
 # 			 line_y=np.array([self.initial_position.y,y[len(y)//2]])
 # 			 plt.xlim((int(min(x)-10)), (int(max(x)+10)))
@@ -88,7 +87,7 @@ class mover():
 # 			 plt.show()
 			 self.counter+=1
 		else:
-		    x,y=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
+		    range_points=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
 
 
 
