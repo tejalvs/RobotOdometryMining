@@ -1,0 +1,147 @@
+[rospy.client][INFO] 2021-10-11 14:58:44,110: init_node, name[/mover], pid[7494]
+[xmlrpc][INFO] 2021-10-11 14:58:44,111: XML-RPC server binding to 0.0.0.0:0
+[xmlrpc][INFO] 2021-10-11 14:58:44,112: Started XML-RPC server [http://robodrive1:40005/]
+[rospy.init][INFO] 2021-10-11 14:58:44,112: ROS Slave URI: [http://robodrive1:40005/]
+[rospy.impl.masterslave][INFO] 2021-10-11 14:58:44,113: _ready: http://robodrive1:40005/
+[rospy.registration][INFO] 2021-10-11 14:58:44,115: Registering with master node http://localhost:11311
+[xmlrpc][INFO] 2021-10-11 14:58:44,115: xml rpc node: starting XML-RPC server
+[rospy.init][INFO] 2021-10-11 14:58:44,213: registered with master
+[rospy.rosout][INFO] 2021-10-11 14:58:44,214: initializing /rosout core topic
+[rospy.rosout][INFO] 2021-10-11 14:58:44,226: connected to core topic /rosout
+[rospy.simtime][INFO] 2021-10-11 14:58:44,228: /use_sim_time is not set, will not subscribe to simulated time [/clock] topic
+[rospy.internal][INFO] 2021-10-11 14:58:44,258: topic[/scan] adding connection to [http://robodrive1:39775/], count 0
+[rospy.internal][INFO] 2021-10-11 14:58:44,259: topic[/pose] adding connection to [http://robodrive1:43211/], count 0
+[rosout][INFO] 2021-10-11 14:58:44,310: initial Pose information(x,y, theta, v, omega) x=-0.831 y=-0.09 theta=-2.4492935982947064e-16
+[rosout][INFO] 2021-10-11 14:58:44,314: Pose information(x,y, theta, v, omega) x=-0.831 y=-0.09 theta=-2.4492935982947064e-16velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:44,723: Pose information(x,y, theta, v, omega) x=-0.831 y=-0.09 theta=-2.4492935982947064e-16velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:44,732: Pose information(x,y, theta, v, omega) x=-0.831 y=-0.091 theta=-2.4492935982947064e-16velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:44,735: Pose information(x,y, theta, v, omega) x=-0.831 y=-0.091 theta=-2.4492935982947064e-16velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:44,739: Pose information(x,y, theta, v, omega) x=-0.831 y=-0.091 theta=-2.4492935982947064e-16velocity=0.3 omega=0.0
+[rospy.internal][INFO] 2021-10-11 14:58:44,839: topic[/cmd_vel] adding connection to [/p2os_driver], count 0
+[rosout][INFO] 2021-10-11 14:58:44,825: Pose information(x,y, theta, v, omega) x=-0.831 y=-0.091 theta=-2.4492935982947064e-16velocity=0.3 omega=0.0
+[rospy.internal][INFO] 2021-10-11 14:58:44,864: topic[/cmd_motor_state] adding connection to [/p2os_driver], count 0
+[rospy.internal][INFO] 2021-10-11 14:58:44,873: topic[/rosout] adding connection to [/rosout], count 0
+[rosout][INFO] 2021-10-11 14:58:44,925: Pose information(x,y, theta, v, omega) x=-0.831 y=-0.091 theta=-2.4492935982947064e-16velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:45,102: Pose information(x,y, theta, v, omega) x=-0.831 y=-0.091 theta=-2.4492935982947064e-16velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:45,201: Pose information(x,y, theta, v, omega) x=-0.831 y=-0.091 theta=-2.4492935982947064e-16velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:45,306: Pose information(x,y, theta, v, omega) x=-0.829 y=-0.091 theta=-2.4492935982947064e-16velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:45,410: Pose information(x,y, theta, v, omega) x=-0.823 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:45,498: Pose information(x,y, theta, v, omega) x=-0.814 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:45,597: Pose information(x,y, theta, v, omega) x=-0.803 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:45,696: Pose information(x,y, theta, v, omega) x=-0.787 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:45,796: Pose information(x,y, theta, v, omega) x=-0.771 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:45,895: Pose information(x,y, theta, v, omega) x=-0.75 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:45,994: Pose information(x,y, theta, v, omega) x=-0.727 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:46,093: Pose information(x,y, theta, v, omega) x=-0.7 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:46,192: Pose information(x,y, theta, v, omega) x=-0.671 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:46,291: Pose information(x,y, theta, v, omega) x=-0.642 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:46,390: Pose information(x,y, theta, v, omega) x=-0.612 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:46,489: Pose information(x,y, theta, v, omega) x=-0.582 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:46,588: Pose information(x,y, theta, v, omega) x=-0.552 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:46,687: Pose information(x,y, theta, v, omega) x=-0.522 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:46,786: Pose information(x,y, theta, v, omega) x=-0.494 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:46,885: Pose information(x,y, theta, v, omega) x=-0.464 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:46,984: Pose information(x,y, theta, v, omega) x=-0.434 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:47,083: Pose information(x,y, theta, v, omega) x=-0.404 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:47,182: Pose information(x,y, theta, v, omega) x=-0.374 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:47,281: Pose information(x,y, theta, v, omega) x=-0.345 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:47,380: Pose information(x,y, theta, v, omega) x=-0.315 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:47,480: Pose information(x,y, theta, v, omega) x=-0.285 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:47,578: Pose information(x,y, theta, v, omega) x=-0.255 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:47,677: Pose information(x,y, theta, v, omega) x=-0.225 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:47,776: Pose information(x,y, theta, v, omega) x=-0.197 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:47,876: Pose information(x,y, theta, v, omega) x=-0.167 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:47,974: Pose information(x,y, theta, v, omega) x=-0.14 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:48,074: Pose information(x,y, theta, v, omega) x=-0.116 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:48,173: Pose information(x,y, theta, v, omega) x=-0.095 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:48,272: Pose information(x,y, theta, v, omega) x=-0.078 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:48,371: Pose information(x,y, theta, v, omega) x=-0.063 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:48,470: Pose information(x,y, theta, v, omega) x=-0.051 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:48,569: Pose information(x,y, theta, v, omega) x=-0.041 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:48,668: Pose information(x,y, theta, v, omega) x=-0.035 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:48,767: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:48,866: Pose information(x,y, theta, v, omega) x=-0.031 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:48,965: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:49,064: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:49,163: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:49,262: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:49,361: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:49,460: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:49,560: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:49,659: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:49,757: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:49,857: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:49,956: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:50,055: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:50,154: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:50,253: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:50,352: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:50,451: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:50,550: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:50,649: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:50,748: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:50,847: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:50,946: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:51,045: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:51,144: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:51,243: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:51,342: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:51,442: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:51,540: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:51,639: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:51,738: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:51,837: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:51,936: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:52,036: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:52,135: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:52,234: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:52,333: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:52,432: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:52,531: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:52,630: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:52,729: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:52,828: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:52,927: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:53,026: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:53,125: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:53,224: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:53,323: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:53,422: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:53,521: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:53,620: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:53,719: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:53,818: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:53,917: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:54,017: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:54,116: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:54,214: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:54,314: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:54,413: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:54,512: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:54,611: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:54,710: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:54,809: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:54,908: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:55,007: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:55,106: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:55,205: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:55,304: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:55,403: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:55,502: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:55,601: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:55,700: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:55,799: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:55,898: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:55,997: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:56,096: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:56,195: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:56,294: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:56,393: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:56,492: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:56,591: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:56,690: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:56,789: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:56,888: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:56,988: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:57,087: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
+[rosout][INFO] 2021-10-11 14:58:57,186: Pose information(x,y, theta, v, omega) x=-0.032 y=-0.091 theta=0.0velocity=0.3 omega=0.0
