@@ -75,7 +75,6 @@ class mover():
 		y.append(self.initial_position.y*100)
 		log_data= "x="+str(x_max)+" y="+str(y_max)+" theta="+str(angle_max)
 		return x,y,x_max,y_max
-
 	
 	def scan_callback(self, scan):
 		range_data=scan.ranges
