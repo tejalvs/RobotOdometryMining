@@ -47,56 +47,47 @@ class mover():
 		if self.counter==0:
 			self.initial_position = odom_to_pose(odom)
 			self.counter+=1
-			ogdata="x="+str(self.initial_position.x)+" y="+str(self.initial_position.y)+" theta="+str(self.initial_position.theta)
-			rospy.loginfo("initial Pose information(x,y, theta, v, omega) %s",ogdata)
+			init_data="x="+str(self.initial_position.x)+" y="+str(self.initial_position.y)+" theta="+str(self.initial_position.theta)
+			rospy.loginfo("initial Pose information(x,y, theta, v, omega) %s",init_data)
 		self.pose = odom_to_pose(odom)
 		logdata="x="+str(self.pose.x)+" y="+str(self.pose.y)+" theta="+str(self.pose.theta)+"velocity="+str(self.vel)+" omega="+str(self.omega)
-		#rospy.loginfo("Pose information(x,y, theta, v, omega) %s",logdata)
+		rospy.loginfo("Pose information(x,y, theta, v, omega) %s",logdata)
 
-
-	def get_range_coordinates(self,range_data,angle_min,angle_max,angle_increment):
-		x=[]
-		y=[]
-		x_max=0
-		y_max=0
-		angle_max=None
-		max_value=float("-inf")
-		log_data=None
+	def get_range_coordinates(self,range_data,angle_min,angle_max,angle_increment,delta):
+		x={}
+		y={}
 		for i in range(len(range_data)):
-			rospy.loginfo(str(x_max)+str(y_max)+str(angle_max))
 			if isnan(range_data[i]):
-				#rospy.loginfo("True")
 				continue
 			else:
-
 				alpha=angle_min+(i*angle_increment)
-				x_new=(self.initial_position.x+cos(self.initial_position.theta+alpha))*100
-				y_new=(self.initial_position.y+sin(self.initial_position.theta+alpha))*100
-				x.append(x_new)
-				y.append(y_new)
-				if range_data[i]>max_value:
-					max_value=range_data[i]
-					x_max=x_new
-					y_max=y_new
-					angle_max=alpha
-		x.append(self.initial_position.x*100)
-		y.append(self.initial_position.y*100)
-		log_data= "x="+str(x_max)+" y="+str(y_max)+" theta="+str(angle_max)
+				x[alpha]=(self.initial_position.x+cos(self.initial_position.theta+alpha))*range_data[i]
+				y[alpha]=(self.initial_position.y+sin(self.initial_position.theta+alpha))*range_data[i]
 		return x,y
+
 
 	def scan_callback(self, scan):
 		range_data=scan.ranges
 		angle_min=scan.angle_min
 		angle_max=scan.angle_max
 		angle_increment=scan.angle_increment
-		#x,y=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment)
 		if self.counter==1:
-			 x,y=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment)
-			 plt.xlim((int(min(x)-10)), (int(max(x)+10)))
-			 plt.ylim((int(min(y)-10)), (int(max(y)+10)))
-			 plt.scatter(x,y)
-			 plt.show()
+			 x,y=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
+# 			 line_x=np.array([self.initial_position.x,x[len(x)//2]])
+# 			 line_y=np.array([self.initial_position.y,y[len(y)//2]])
+# 			 plt.xlim((int(min(x)-10)), (int(max(x)+10)))
+# 			 plt.ylim((int(min(y)-10)), (int(max(y)+10)))
+# 			 plt.scatter(x,y,linestyle='--', marker='o', color='b')
+# 			 plt.scatter((self.initial_position.x),(self.initial_position.y),10,color="red")
+# 			 rospy.loginfo(str(x_max)+","+str(y_max))
+# 			 plt.scatter((x[len(x)//2]),y[len(y)//2],10,color="red")
+# 			 plt.plot(line_x,line_y)
+# 			 plt.savefig('/home/driver/catkin_ws/src/mover/src/initial_position.png')
+# 			 plt.show()
 			 self.counter+=1
+		else:
+		    x,y=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
+
 
 
 	def timer_callback(self, event):
@@ -123,8 +114,8 @@ def main():
 	mv = mover(t,v,w)
 	rospy.Subscriber("/pose", Odometry, mv.odom_callback)
 	rospy.Subscriber("/scan", LaserScan, mv.scan_callback)
-	#  	rospy.Subscriber("/camera/rgb/image_color", Image, mv.image_callback)
 	rospy.Timer(rospy.Duration(0.1), mv.timer_callback)
 	rospy.spin()
 
 main()
+
