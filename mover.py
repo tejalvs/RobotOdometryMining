@@ -5,7 +5,7 @@ from sensor_msgs.msg import LaserScan,Image,CameraInfo
 from p2os_msgs.msg import MotorState
 from geometry_msgs.msg import Twist
 from nav_msgs.msg import Odometry
-from math import atan2,isnan,sin,cos
+from math import atan2,isnan,sin,cos,dist
 import numpy as np
 import matplotlib.pyplot as plt
 from collections import OrderedDict
@@ -80,7 +80,7 @@ class mover():
 		if self.counter==1:
 			self.initial_range_points=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
 			center=self.initial_range_points[self.find_point(self.initial_range_points.keys(),angle_increment)]
-			rospy.loginfo(center)
+			rospy.loginfo(dist([self.initial_position.x,self.initial_position.y],self.initial_range_points[center]))
 # 			 line_x=np.array([self.initial_position.x,x[len(x)//2]])
 # 			 line_y=np.array([self.initial_position.y,y[len(y)//2]])
 # 			 plt.xlim((int(min(x)-10)), (int(max(x)+10)))
