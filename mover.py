@@ -73,6 +73,8 @@ class mover():
 		angle_increment=scan.angle_increment
 		if self.counter==1:
 			 x,y=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
+			 rospy.loginfo(x)
+			 rospy.loginfo(y)
 # 			 line_x=np.array([self.initial_position.x,x[len(x)//2]])
 # 			 line_y=np.array([self.initial_position.y,y[len(y)//2]])
 # 			 plt.xlim((int(min(x)-10)), (int(max(x)+10)))
