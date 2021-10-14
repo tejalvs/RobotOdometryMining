@@ -41,69 +41,99 @@ class mover():
 		self.initial_position=None
 		self.counter=0
 		self.initial_range_points=None
-
+        self.initial_dist_fr_wall=None
 
 	def odom_callback(self, odom):
+	    #get the initial_position of the robot
 		if self.counter==0:
 			self.initial_position = odom_to_pose(odom)
 			self.counter+=1
 			init_data="x="+str(self.initial_position.x)+" y="+str(self.initial_position.y)+" theta="+str(self.initial_position.theta)
 			rospy.loginfo("initial Pose information(x,y, theta, v, omega) %s",init_data)
 		self.pose = odom_to_pose(odom)
-		logdata="x="+str(self.pose.x)+" y="+str(self.pose.y)+" theta="+str(self.pose.theta)+"velocity="+str(self.vel)+" omega="+str(self.omega)
-		rospy.loginfo("Pose information(x,y, theta, v, omega) %s",logdata)
+		#calculate the distance travelled by the robot
+		distance_travelled=self.get_distance(self.initial_position.x,self.initial_position.y,self.pose.x,self.pose.y)
+		#log information
+		logdata="x="+str(self.pose.x)+" y="+str(self.pose.y)+" theta="+str(self.pose.theta)+"velocity="+str(self.vel)+" omega="+str(self.omega)+"distance_travelled="+distance_travelled
+		rospy.loginfo("Odometry:Pose information(x,y, theta, v, omega,distance_travelled) %s",logdata)
 
-	def get_range_coordinates(self,range_data,angle_min,angle_max,angle_increment,delta):
-		range_points={}
-		for i in range(len(range_data)):
-			if isnan(range_data[i]):
-				continue
-			else:
-				alpha=angle_min+(i*angle_increment)
-				x=(self.initial_position.x+cos(self.initial_position.theta+alpha))*range_data[i]
-				y=(self.initial_position.y+sin(self.initial_position.theta+alpha))*range_data[i]
-				range_points[alpha]=[x,y]
-		return range_points
+    def
+# 	def get_wall_coordinates(self,range_data,angle_min,angle_max,angle_increment):
+# 		range_points={}
+# 		for i in range(len(range_data)):
+# 			if isnan(range_data[i]):
+# 				continue
+# 			else:
+# 				alpha=angle_min+(i*angle_increment)
+# 				x=(self.initial_position.x+cos(self.initial_position.theta+alpha))*range_data[i]
+# 				y=(self.initial_position.y+sin(self.initial_position.theta+alpha))*range_data[i]
+# 				range_points[alpha]=[x,y]
+# 		return range_points
+#
+# 	def find_center_angle(self,key_store,angle_increment):
+# 		min_val=float('inf')
+# 		for value in key_store:
+# 	    		if abs(value)< abs(min_val) :
+# 	    			min_val=value
+# 		return min_val
+#
+#     def get_distance(self,p1x,p1y,p2x,p2y):
+#         result= (((p2x-p1x )**2) + ((p2y-p1y)**2) )**0.5)
+#         return result
 
-	def find_point(self,key_store,angle_increment):
-		min_val=float('inf')
-		for value in key_store:
-	    		if abs(value)< abs(min_val) :
-	    			min_val=value
-		return min_val
+    def get_avg_distance(range_data,angle_min,angle_max,angle_increment):
+        n=0
+        total=0
+        for i in range(len(range_data)):
+            if isnan(range_data[i]):
+                continue
+            else:
+                alpha=angle_min+(i*angle_increment)
+                if alpha > -0.00174533 and alpha < 0.00174533:
+                   n+=1
+                   total= range_data[i]
+        return total/n
 
-    def get_distance(self,p1x,p1y,p2x,p2y):
-        result= (((p2x-p1x )**2) + ((p2y-p1y)**2) )**0.5)
-        return result
 
-	def scan_callback(self, scan):
-		range_data=scan.ranges
-		angle_min=scan.angle_min
-		angle_max=scan.angle_max
-		angle_increment=scan.angle_increment
-		if self.counter==1:
-			self.initial_range_points=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
-			center=self.initial_range_points[self.find_point(self.initial_range_points.keys(),angle_increment)]
-            d=self.get_distance(self.initial_position.x,self.initial_position.y,center[0],center[1])
-            rospy.loginfo(ds)
-# 			 line_x=np.array([self.initial_position.x,x[len(x)//2]])
-# 			 line_y=np.array([self.initial_position.y,y[len(y)//2]])
-# 			 plt.xlim((int(min(x)-10)), (int(max(x)+10)))
-# 			 plt.ylim((int(min(y)-10)), (int(max(y)+10)))
-# 			 plt.scatter(x,y,linestyle='--', marker='o', color='b')
-# 			 plt.scatter((self.initial_position.x),(self.initial_position.y),10,color="red")
-# 			 rospy.loginfo(str(x_max)+","+str(y_max))
-# 			 plt.scatter((x[len(x)//2]),y[len(y)//2],10,color="red")
-# 			 plt.plot(line_x,line_y)
-# 			 plt.savefig('/home/driver/catkin_ws/src/mover/src/initial_position.png')
-# 			 plt.show()
-           rospy.loginfo(center)
-           rospy.loginfo("middle")
-			self.counter+=1
-		else:
-			range_points=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment,0)
-			center=range_points[self.find_point(range_points.keys(),angle_increment)]
-			rospy.loginfo(center)
+    def scan_callback(self, scan):
+            range_data=scan.ranges
+    		angle_min=scan.angle_min
+    		angle_max=scan.angle_max
+    		angle_increment=scan.angle_increment
+    		if self.counter==1:
+    		    self.initial_dist_fr_wall=self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
+    	    else:
+    	        delta=self.initial_dist_fr_wall-self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
+    	    log_data="Distance Travelled="+str(delta)
+    	    rospy.loginfo(log_data)
+
+
+# 	def scan_callback(self, scan):
+# 		range_data=scan.ranges
+# 		angle_min=scan.angle_min
+# 		angle_max=scan.angle_max
+# 		angle_increment=scan.angle_increment
+# 		init_center=None
+# 		#get distance of the wall
+# 		if self.counter==1:
+# 			#get all co-ordinates
+# 			self.initial_range_points=self.get_wall_coordinates(range_data,angle_min,angle_max,angle_increment)
+# 			#find the central 0 degree  point
+# 			center=self.initial_range_points[self.find_center_angle(self.initial_range_points.keys(),angle_increment)]
+#             #calculate distance from wall
+#             self.initial_dist_fr_wall=self.get_distance(self.initial_position.x,self.initial_position.y,center[0],center[1])
+# 			self.counter+=1
+# 		else:
+# 		    delta=initial_dist_fr_wall-range_data[angle_max//angle_increment]
+# 		    alpha=angle_min+(i*angle_increment)
+# 		    x=(self.initial_position.x+cos(self.initial_position.theta+alpha))*range_data[i]
+#             y=(self.initial_position.y+sin(self.initial_position.theta+alpha))*range_data[i]
+#  			range_points=self.get_range_coordinates(range_data,angle_min,angle_max,angle_increment)
+# 			center=range_points[self.find_point(range_points.keys(),angle_increment)]
+# 			d=self.get_distance(self.initial_position.x,self.initial_position.y,center[0],center[1])
+# 			current_d=self.initial_dist_fr_wall-d
+# 			t=current_d/d
+# 			x_val=(1-t)*self.initial_position.x+t*
 
 
 
