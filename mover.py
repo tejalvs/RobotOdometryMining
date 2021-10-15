@@ -101,15 +101,15 @@ class mover():
 		angle_min=scan.angle_min
 		angle_max=scan.angle_max
 		angle_increment=scan.angle_increment
+		log_data=None
 		if self.counter==1:
 			self.initial_dist_fr_wall=self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
 			log_data="Scan Data: inital wall diatance ="+str(self.initial_dist_fr_wall)
-			rospy.loginfo(log_data)
 			self.counter=self.counter+1
 		else:
 			delta=self.initial_dist_fr_wall-self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
 			log_data="Scan Data: Distance Travelled="+str(delta)
-			rospy.loginfo(log_data)
+		rospy.loginfo(log_data)
 
 
 # 	def scan_callback(self, scan):
