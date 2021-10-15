@@ -104,7 +104,7 @@ class mover():
 		log_data=None
 		if self.counter==1:
 			self.initial_dist_fr_wall=self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
-			log_data="Scan Data: inital wall diatance ="+str(self.initial_dist_fr_wall)
+			log_data="Scan Data: inital wall diatance="+str(self.initial_dist_fr_wall)
 			self.counter=self.counter+1
 		else:
 			delta=self.initial_dist_fr_wall-self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
