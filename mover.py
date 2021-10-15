@@ -55,8 +55,8 @@ class mover():
 		#calculate the distance travelled by the robot
 		distance_travelled=self.get_distance(self.initial_position.x,self.initial_position.y,self.pose.x,self.pose.y)
 		#log information
-		logdata="x="+str(self.pose.x)+" y="+str(self.pose.y)+" theta="+str(self.pose.theta)+"velocity="+str(self.vel)+" omega="+str(self.omega)+"distance_travelled="+str(distance_travelled)
-		rospy.loginfo("Odometry:Pose information(x,y, theta, v, omega,distance_travelled) %s",logdata)
+		logdata="x="+str(self.pose.x)+",y="+str(self.pose.y)+",theta="+str(self.pose.theta)+",velocity="+str(self.vel)+ ",omega="+str(self.omega)+",distance_travelled="+str(distance_travelled)
+		rospy.loginfo("Odometry:Pose information  %s",logdata)
 
 # 	def get_wall_coordinates(self,range_data,angle_min,angle_max,angle_increment):
 # 		range_points={}
@@ -101,15 +101,15 @@ class mover():
 		angle_min=scan.angle_min
 		angle_max=scan.angle_max
 		angle_increment=scan.angle_increment
+		log_data=None
 		if self.counter==1:
 			self.initial_dist_fr_wall=self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
 			log_data="Scan Data: inital wall diatance ="+str(self.initial_dist_fr_wall)
-			rospy.loginfo(log_data)
 			self.counter=self.counter+1
 		else:
 			delta=self.initial_dist_fr_wall-self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
 			log_data="Scan Data: Distance Travelled="+str(delta)
-			rospy.loginfo(log_data)
+		rospy.loginfo(log_data)
 
 
 # 	def scan_callback(self, scan):
