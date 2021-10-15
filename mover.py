@@ -9,6 +9,7 @@ from math import atan2,isnan,sin,cos,dist
 import numpy as np
 import matplotlib.pyplot as plt
 from collections import OrderedDict
+import decimal
 
 class Pose():
 	def __init__(self):
@@ -41,10 +42,10 @@ class mover():
 		self.initial_position=None
 		self.counter=0
 		self.initial_range_points=None
-        self.initial_dist_fr_wall=None
+		self.initial_dist_fr_wall=None
 
 	def odom_callback(self, odom):
-	    #get the initial_position of the robot
+	    	#get the initial_position of the robot
 		if self.counter==0:
 			self.initial_position = odom_to_pose(odom)
 			self.counter+=1
@@ -54,10 +55,9 @@ class mover():
 		#calculate the distance travelled by the robot
 		distance_travelled=self.get_distance(self.initial_position.x,self.initial_position.y,self.pose.x,self.pose.y)
 		#log information
-		logdata="x="+str(self.pose.x)+" y="+str(self.pose.y)+" theta="+str(self.pose.theta)+"velocity="+str(self.vel)+" omega="+str(self.omega)+"distance_travelled="+distance_travelled
+		logdata="x="+str(self.pose.x)+" y="+str(self.pose.y)+" theta="+str(self.pose.theta)+"velocity="+str(self.vel)+" omega="+str(self.omega)+"distance_travelled="+str(distance_travelled)
 		rospy.loginfo("Odometry:Pose information(x,y, theta, v, omega,distance_travelled) %s",logdata)
 
-    def
 # 	def get_wall_coordinates(self,range_data,angle_min,angle_max,angle_increment):
 # 		range_points={}
 # 		for i in range(len(range_data)):
@@ -77,35 +77,39 @@ class mover():
 # 	    			min_val=value
 # 		return min_val
 #
-#     def get_distance(self,p1x,p1y,p2x,p2y):
-#         result= (((p2x-p1x )**2) + ((p2y-p1y)**2) )**0.5)
-#         return result
+	def get_distance(self,p1x,p1y,p2x,p2y):
+		result= ((((p2x-p1x )**2) + ((p2y-p1y)**2) )**0.5)
+		return result
 
-    def get_avg_distance(range_data,angle_min,angle_max,angle_increment):
-        n=0
-        total=0
-        for i in range(len(range_data)):
-            if isnan(range_data[i]):
-                continue
-            else:
-                alpha=angle_min+(i*angle_increment)
-                if alpha > -0.00174533 and alpha < 0.00174533:
-                   n+=1
-                   total= range_data[i]
-        return total/n
+	def get_avg_distance(self,range_data,angle_min,angle_max,angle_increment):
+		n=0
+		total=0
+		alpha=0
+		for i in range(len(range_data)):
+			if isnan(range_data[i]):
+				continue
+			else:
+				alpha=(angle_min+(i*angle_increment))
+				if abs(alpha) <= 0.0174533:
+					total=total+range_data[i]
+					n=n+1
+		total=total/n
+		return total
 
-
-    def scan_callback(self, scan):
-            range_data=scan.ranges
-    		angle_min=scan.angle_min
-    		angle_max=scan.angle_max
-    		angle_increment=scan.angle_increment
-    		if self.counter==1:
-    		    self.initial_dist_fr_wall=self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
-    	    else:
-    	        delta=self.initial_dist_fr_wall-self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
-    	    log_data="Distance Travelled="+str(delta)
-    	    rospy.loginfo(log_data)
+	def scan_callback(self, scan):
+		range_data=scan.ranges
+		angle_min=scan.angle_min
+		angle_max=scan.angle_max
+		angle_increment=scan.angle_increment
+		if self.counter==1:
+			self.initial_dist_fr_wall=self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
+			log_data="Scan Data: inital wall diatance ="+str(self.initial_dist_fr_wall)
+			rospy.loginfo(log_data)
+			self.counter=self.counter+1
+		else:
+			delta=self.initial_dist_fr_wall-self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
+			log_data="Scan Data: Distance Travelled="+str(delta)
+			rospy.loginfo(log_data)
 
 
 # 	def scan_callback(self, scan):
@@ -134,9 +138,6 @@ class mover():
 # 			current_d=self.initial_dist_fr_wall-d
 # 			t=current_d/d
 # 			x_val=(1-t)*self.initial_position.x+t*
-
-
-
 
 
 	def timer_callback(self, event):
