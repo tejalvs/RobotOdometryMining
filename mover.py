@@ -55,8 +55,8 @@ class mover():
 		#calculate the distance travelled by the robot
 		distance_travelled=self.get_distance(self.initial_position.x,self.initial_position.y,self.pose.x,self.pose.y)
 		#log information
-		logdata="x="+str(self.pose.x)+" y="+str(self.pose.y)+" theta="+str(self.pose.theta)+"velocity="+str(self.vel)+" omega="+str(self.omega)+"distance_travelled="+str(distance_travelled)
-		rospy.loginfo("Odometry:Pose information(x,y, theta, v, omega,distance_travelled) %s",logdata)
+		logdata="x="+str(self.pose.x)+",y="+str(self.pose.y)+",theta="+str(self.pose.theta)+",velocity="+str(self.vel)+",omega="+str(self.omega)+",distance_travelled="+str(distance_travelled)
+		rospy.loginfo("Odometry:Pose information  %s",logdata)
 
 # 	def get_wall_coordinates(self,range_data,angle_min,angle_max,angle_increment):
 # 		range_points={}
