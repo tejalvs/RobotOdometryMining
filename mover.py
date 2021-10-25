@@ -10,7 +10,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from collections import OrderedDict
 import decimal
+import time
 
+start_time=None
+end_time=None
 class Pose():
 	def __init__(self):
 	    	self.header = None
@@ -91,12 +94,13 @@ class mover():
 			else:
 				alpha=(angle_min+(i*angle_increment))
 				if abs(alpha) <= 0.0174533:
-					total=total+range_data[i]
+					total+=range_data[i]
 					n=n+1
 		total=total/n
 		return total
 
 	def scan_callback(self, scan):
+	    global start_time,end_time
 		range_data=scan.ranges
 		angle_min=scan.angle_min
 		angle_max=scan.angle_max
@@ -108,7 +112,8 @@ class mover():
 			self.counter=self.counter+1
 		else:
 			delta=self.initial_dist_fr_wall-self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
-			log_data="Scan Data: Distance Travelled="+str(delta)
+			end_time=start_time-time.time()
+			log_data="Scan Data: Distance Travelled="+str(delta)+"in "+end_time+" seconds"
 			rospy.loginfo(log_data)
 
 
@@ -156,6 +161,8 @@ class mover():
 
 
 def main():
+    global start_time,end_time
+    start_time=time.time()
 	rospy.init_node("mover")
 	# arguments are time, fwd vel, angular vel
 	t = float(sys.argv[1])
