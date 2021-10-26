@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from collections import OrderedDict
 import decimal
 import time
-
+wall_location=[None,None]
 start_time=None
 end_time=None
 class Pose():
@@ -61,17 +61,20 @@ class mover():
 		logdata="x="+str(self.pose.x)+",y="+str(self.pose.y)+",theta="+str(self.pose.theta)+",velocity="+str(self.vel)+",omega="+str(self.omega)+",distance_travelled="+str(distance_travelled)
 		rospy.loginfo("Odometry:Pose information  %s",logdata)
 
-# 	def get_wall_coordinates(self,range_data,angle_min,angle_max,angle_increment):
-# 		range_points={}
-# 		for i in range(len(range_data)):
-# 			if isnan(range_data[i]):
-# 				continue
-# 			else:
-# 				alpha=angle_min+(i*angle_increment)
-# 				x=(self.initial_position.x+cos(self.initial_position.theta+alpha))*range_data[i]
-# 				y=(self.initial_position.y+sin(self.initial_position.theta+alpha))*range_data[i]
-# 				range_points[alpha]=[x,y]
-# 		return range_points
+	def get_wall_coordinates(self,range_data,angle_min,angle_max,angle_increment):
+		n=0
+		x=None
+		y=None
+		for i in range(len(range_data)):
+			if isnan(range_data[i]):
+				continue
+			else:
+				alpha=angle_min+(i*angle_increment)
+				if abs(alpha) <= 0.0174533:
+                    x+=(self.initial_position.x+cos(self.initial_position.theta+alpha))*range_data[i]
+                    y+=(self.initial_position.y+sin(self.initial_position.theta+alpha))*range_data[i]
+                    n=n+1
+		return [x/n,y/n]
 #
 # 	def find_center_angle(self,key_store,angle_increment):
 # 		min_val=float('inf')
@@ -107,7 +110,8 @@ class mover():
 		angle_increment=scan.angle_increment
 		if self.counter==1:
 			self.initial_dist_fr_wall=self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
-			log_data="Scan Data: inital wall diatance ="+str(self.initial_dist_fr_wall)
+			wall_location=self.get_wall_coordinates(range_data,angle_min,angle_max,angle_increment)
+			log_data="Scan Data: inital wall diatance  ="+str(self.initial_dist_fr_wall)
 			rospy.loginfo(log_data)
 			self.counter=self.counter+1
 		else:
