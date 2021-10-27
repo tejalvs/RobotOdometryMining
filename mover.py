@@ -103,7 +103,7 @@ class mover():
 		return total
 
 	def scan_callback(self, scan):
-	    global start_time,end_time
+	    global start_time,end_time,wall_location
 		range_data=scan.ranges
 		angle_min=scan.angle_min
 		angle_max=scan.angle_max
@@ -116,8 +116,11 @@ class mover():
 			self.counter=self.counter+1
 		else:
 			delta=self.initial_dist_fr_wall-self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
+			t=delta/self.initial_dist_fr_wall
+			pos_x=[(1-t)*self.initial_position.x+t*wall_location[0]]
+			pos_y=[(1-t)*self.initial_position.y+t*wall_location[1]]
 			end_time=start_time-time.time()
-			log_data="Scan Data: Distance Travelled="+str(delta)+"in "+end_time+" seconds"
+			log_data="Scan Data: Distance Travelled="+str(delta)+"in "+end_time+" seconds with Location x="+str(pos_x)+" y="+str(pos_y)
 			rospy.loginfo(log_data)
 
 
