@@ -63,17 +63,17 @@ class mover():
 
 	def get_wall_coordinates(self,range_data,angle_min,angle_max,angle_increment):
 		n=0
-		x=None
-		y=None
+		x=0
+		y=0
 		for i in range(len(range_data)):
 			if isnan(range_data[i]):
 				continue
 			else:
 				alpha=angle_min+(i*angle_increment)
 				if abs(alpha) <= 0.0174533:
-                    x+=(self.initial_position.x+cos(self.initial_position.theta+alpha))*range_data[i]
-                    y+=(self.initial_position.y+sin(self.initial_position.theta+alpha))*range_data[i]
-                    n=n+1
+                    			x=x+(self.initial_position.x+cos(self.initial_position.theta+alpha))*range_data[i]
+                    			y=y+(self.initial_position.y+sin(self.initial_position.theta+alpha))*range_data[i]
+                    			n=n+1
 		return [x/n,y/n]
 #
 # 	def find_center_angle(self,key_store,angle_increment):
@@ -103,7 +103,7 @@ class mover():
 		return total
 
 	def scan_callback(self, scan):
-	    global start_time,end_time,wall_location
+		global start_time,end_time,wall_location
 		range_data=scan.ranges
 		angle_min=scan.angle_min
 		angle_max=scan.angle_max
@@ -111,16 +111,16 @@ class mover():
 		if self.counter==1:
 			self.initial_dist_fr_wall=self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
 			wall_location=self.get_wall_coordinates(range_data,angle_min,angle_max,angle_increment)
-			log_data="Scan Data: inital wall diatance  ="+str(self.initial_dist_fr_wall)
+			log_data="Scan Data: inital wall diatance  ="+str(self.initial_dist_fr_wall)+ "with location x= "+str(wall_location[0])+" and y="+str(wall_location[1])
 			rospy.loginfo(log_data)
 			self.counter=self.counter+1
 		else:
 			delta=self.initial_dist_fr_wall-self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
 			t=delta/self.initial_dist_fr_wall
-			pos_x=[(1-t)*self.initial_position.x+t*wall_location[0]]
-			pos_y=[(1-t)*self.initial_position.y+t*wall_location[1]]
+			pos_x=(1-t)*self.initial_position.x+t*wall_location[0]
+			pos_y=(1-t)*self.initial_position.y+t*wall_location[1]
 			end_time=start_time-time.time()
-			log_data="Scan Data: Distance Travelled="+str(delta)+"in "+end_time+" seconds with Location x="+str(pos_x)+" y="+str(pos_y)
+			log_data="Scan Data: Distance Travelled ="+str(delta)+" in "+str(end_time)+" seconds with Location x="+str(pos_x)+" y="+str(pos_y)
 			rospy.loginfo(log_data)
 
 
@@ -168,8 +168,8 @@ class mover():
 
 
 def main():
-    global start_time,end_time
-    start_time=time.time()
+	global start_time,end_time
+	start_time=time.time()
 	rospy.init_node("mover")
 	# arguments are time, fwd vel, angular vel
 	t = float(sys.argv[1])
