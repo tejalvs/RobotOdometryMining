@@ -120,7 +120,7 @@ class mover():
 			pos_x=(1-t)*self.initial_position.x+t*wall_location[0]
 			pos_y=(1-t)*self.initial_position.y+t*wall_location[1]
 			end_time=start_time-time.time()
-			log_data="Scan Data: Distance Travelled ="+str(delta)+" in "+str(end_time)+" seconds with Location x="+str(pos_x)+" y="+str(pos_y)
+			log_data="Scan Data: Distance Travelled="+str(delta)+" in "+str(end_time)+" seconds with Location x="+str(pos_x)+" y="+str(pos_y)
 			rospy.loginfo(log_data)
 
 
