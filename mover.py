@@ -108,14 +108,15 @@ class mover():
 		angle_min=scan.angle_min
 		angle_max=scan.angle_max
 		angle_increment=scan.angle_increment
+		delta=0.0
 		if self.counter==1:
 			self.initial_dist_fr_wall=self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
 			wall_location=self.get_wall_coordinates(range_data,angle_min,angle_max,angle_increment)
-			log_data="Scan Data: inital wall diatance  ="+str(self.initial_dist_fr_wall)+ "with location x= "+str(wall_location[0])+" and y="+str(wall_location[1])
+			log_data="Scan Data: inital wall distance  ="+str(self.initial_dist_fr_wall)+ "with location x= "+str(wall_location[0])+" and y="+str(wall_location[1])
 			rospy.loginfo(log_data)
 			self.counter=self.counter+1
 		else:
-			delta=self.initial_dist_fr_wall-self.get_avg_distance(range_data,angle_min,angle_max,angle_increment)
+			delta=abs(self.initial_dist_fr_wall-self.get_avg_distance(range_data,angle_min,angle_max,angle_increment))
 			t=delta/self.initial_dist_fr_wall
 			pos_x=(1-t)*self.initial_position.x+t*wall_location[0]
 			pos_y=(1-t)*self.initial_position.y+t*wall_location[1]
